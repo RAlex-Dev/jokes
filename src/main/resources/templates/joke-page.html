@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Jokes</title>
+
+    <!-- reference css file -->
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<hr>
+<br>
+<div class="container">
+    <h3 class="setup"></h3>
+    <h2 class="punchline"></h2>
+
+    <button class="nextJokeBtn" onclick="getJoke()">Next Joke!</button>
+</div>
+<br>
+</body>
+
+<!-- Uses HashMap from Java and accesses key/value pairs when the page loads and when the next joke button is pressed -->
+
+<script type="text/javascript" th:inline="javascript">
+    var setup = document.querySelector("h3.setup");
+    var punchline = document.querySelector("h2.punchline");
+
+    var i = 0;
+
+window.onload = function () {
+    getJoke();
+}
+    function getJoke() {
+
+    // Enables Java object to be accessed from model
+
+        var jokes = /*[[${jokes}]]*/
+            keys = Object.keys(jokes);
+
+        setup.textContent = keys[i];
+        punchline.textContent = jokes[keys[i]];
+        i++;
+
+        // Prevents the integer from being assigned value greater than 9
+
+        if(i > 9){
+            i = 0;
+        }
+    }
+
+</script>
+</html>

@@ -1,0 +1,46 @@
+html {
+    background-color: rgba(0, 0, 255, 0.05);
+}
+.container{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    padding-top: 150px;
+    font-family: Papyrus;
+
+}
+
+.container h2{
+    color: #ff0000;
+}
+
+.container h3{
+    color: #0066ff;
+}
+
+.nextJokeBtn {
+    display: inline-block;
+    padding: 5px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #72a6ff;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #c1bcbc;
+}
+
+.nextJokeBtn:hover {background-color: #4568a0
+}
+
+.nextJokeBtn:active {
+    background-color: #4568a0;
+    box-shadow: 0 5px #868686;
+    transform: translateY(4px);
+}
+
+
