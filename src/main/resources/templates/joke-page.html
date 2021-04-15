@@ -32,10 +32,12 @@ window.onload = function () {
 }
     function getJoke() {
 
-    // Enables Java object to be accessed from model
+        // Enables Java object to be accessed from model
 
         var jokes = /*[[${jokes}]]*/
             keys = Object.keys(jokes);
+
+        // Change text content based on integer
 
         setup.textContent = keys[i];
         punchline.textContent = jokes[keys[i]];

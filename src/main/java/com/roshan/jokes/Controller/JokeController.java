@@ -22,7 +22,7 @@ import java.util.Map;
 public class JokeController {
 
     /*
-    Retrieve JSON data from API endpoint, parse it, add to HashMap and to model, and help render webpage
+    Retrieve JSON data from API endpoint
     */
 
     @GetMapping("/jokes")
@@ -37,18 +37,28 @@ public class JokeController {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
+        Map<String, String> JsonMap = makeJSONMap(response);
+
+        // Spring enables this model object to be linked to and retrieved by HTML/JS code
+        model.addAttribute("jokes", JsonMap);
+
+        return "joke-page";
+    }
+
+    /*
+    Parse JSON data, create and return Map object to method call
+    */
+
+    public Map<String, String> makeJSONMap(HttpResponse<String> response){
+
         JSONArray jsonArray = new JSONArray(response.body());
         Map<String, String> jokes = new HashMap<>();
 
-        // Add each JSON object to hashmap
+        // Add each JSON object to Map
 
         for(int i = 0; i < jsonArray.length(); i++){
             jokes.put(jsonArray.getJSONObject(i).get("setup").toString(), jsonArray.getJSONObject(i).get("punchline").toString());
-            }
-
-        // Spring enables this model object to be linked to and retrieved by HTML/JS code
-        model.addAttribute("jokes", jokes);
-
-        return "joke-page";
+        }
+        return jokes;
     }
 }
